@@ -12,22 +12,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-int _currentIndex = 0;
+  int _currentIndex = 2;
 
 // Page uudiin jagsaalt
-List<Widget> _totalPage = [MoviesPage(), WishlistPage(), ProfilePage()];
+  List<Widget> _totalPage = [MoviesPage(), WishlistPage(), ProfilePage()];
 
 // Bottom navigation solih funkts
-void _setCurrentIndex(int val) {
-  setState((){
-    _currentIndex = val;
-  });
-}
+  void _setCurrentIndex(int val) {
+    setState(() {
+      _currentIndex = val;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _totalPage[_currentIndex],
+      backgroundColor: Color(0xff36393f),
+      body: SafeArea(
+        child: _totalPage[_currentIndex],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: _setCurrentIndex,
@@ -35,15 +38,12 @@ void _setCurrentIndex(int val) {
           BottomNavigationBarItem(
             icon: Icon(Icons.movie),
             label: "Кино",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite),
-              label: "Дуртай",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: "Профайл"
-            ),  
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: "Дуртай",
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Профайл"),
         ],
       ),
     );
