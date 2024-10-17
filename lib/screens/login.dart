@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+      padding: EdgeInsets.symmetric(horizontal: 60, vertical: 50),
       child: Form(
         key: _formKey,
         child: Column(
@@ -105,14 +105,15 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(
               width: double.infinity,
-              height: 50,
+              height: 70,
               child: ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.white),
                   foregroundColor: MaterialStateProperty.all(Colors.black),
+                  // backgroundColor: Colors.white,
                 ),
                 onPressed: _onSubmit,
-                child: Text("Sign in"),
+                child: Text("Нэврэх"),
               ),
             ),
           ],
