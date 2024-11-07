@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:movie_app/model/movie/index.dart';
+import 'package:movie_app/widgets/movie_card.dart';
 import 'package:movie_app/widgets/movie_special_card.dart';
 // Kinonii jagsaalt haruulah screen
 
@@ -11,22 +14,32 @@ class MoviesPage extends StatefulWidget {
 }
 
 class _MoviesPageState extends State<MoviesPage> {
-  List<MovieModel> _data = [];
-  List<MovieModel> get _specialData =>
-      _data.length > 3 ? _data.sublist(0, 3) : _data;
+  // List<MovieModel> _data = [];
+  // List<MovieModel> get _specialData =>
+  //     _data.length > 3 ? _data.sublist(0, 3) : _data;
+
+  Future<List<MovieModel>> _getData() async {
+    String res =
+        await DefaultAssetBundle.of(context).loadString("assets/movies.json");
+    // JSON Decode ni String g json helberluu shiljvvldeg
+    return MovieModel.fromList(jsonDecode(res));
+  }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
+      future: _getData(),
       builder: ((context, snapshot) {
         if (snapshot.hasData) {
+          final _specialData = snapshot.data!.length > 3
+              ? snapshot.data!.sublist(0, 3)
+              : snapshot.data!;
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("Special"),
-              SizedBox(
-                height: 200,
-                child: SingleChildScrollView(
+  
+                SingleChildScrollView(
                   child: Row(
                     children: List.generate(
                       _specialData.length,
@@ -34,10 +47,9 @@ class _MoviesPageState extends State<MoviesPage> {
                     ),
                   ),
                 ),
-              ),
               Text("Movies"),
               Wrap(
-                children: [],
+                children: List.generate(snapshot.data!.length, (index) => MovieCard(snapshot.data![index])),
               ),
             ],
           );

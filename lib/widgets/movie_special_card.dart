@@ -8,9 +8,20 @@ class MovieSpecialCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width * 0.5;
     return Container(
-      decoration: BoxDecoration(image: DecorationImage(image: NetworkImage(data.imgUrl))),
-      child: Icon(Icons.play_circle),
+      height: width * 1.5,
+      width: width,
+      margin: EdgeInsets.only(right: 20),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          image: DecorationImage(
+              image: NetworkImage(data.imgUrl), fit: BoxFit.fill)),
+      child: Icon(
+        Icons.play_circle,
+        color: Colors.grey.withOpacity(0.6),
+        size: 60,
+      ),
     );
   }
 }
