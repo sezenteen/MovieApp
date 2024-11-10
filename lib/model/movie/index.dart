@@ -19,11 +19,8 @@ class MovieModel {
     this.type,
   });
 
-  static List<MovieModel> fromList(List<dynamic> data) =>
-      data.map((e) => MovieModel.fromJson(e)).toList();
+  static List<MovieModel> fromList(List<dynamic> data) => data.map((e) => MovieModel.fromJson(e)).toList();
 
-  factory MovieModel.fromJson(Map<String, dynamic> json) =>
-      _$MovieModelFromJson(json);
-
+  factory MovieModel.fromJson(Map<String, dynamic> json) => _$MovieModelFromJson(json);
   Map<String, dynamic> toJson() => _$MovieModelToJson(this);
 }

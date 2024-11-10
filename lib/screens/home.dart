@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/screens/movie_detail.dart';
 import 'package:movie_app/screens/movies.dart';
 import 'package:movie_app/screens/profile.dart';
 import 'package:movie_app/screens/wishlist.dart';
@@ -13,11 +12,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 2;
+  List<Widget> _totalPage = [MoviesPage(), WishListPage(), ProfilePage()];
 
-// Page uudiin jagsaalt
-  List<Widget> _totalPage = [MoviesPage(), WishlistPage(), ProfilePage()];
-
-// Bottom navigation solih funkts
   void _setCurrentIndex(int val) {
     setState(() {
       _currentIndex = val;
@@ -43,7 +39,10 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.favorite),
             label: "Дуртай",
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Профайл"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: "Профайл",
+          ),
         ],
       ),
     );

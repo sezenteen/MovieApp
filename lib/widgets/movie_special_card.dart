@@ -12,11 +12,11 @@ class MovieSpecialCard extends StatelessWidget {
     return Container(
       height: width * 1.5,
       width: width,
-      margin: EdgeInsets.only(right: 20),
+      margin: EdgeInsets.only(right: 10),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          image: DecorationImage(
-              image: NetworkImage(data.imgUrl), fit: BoxFit.fill)),
+        borderRadius: BorderRadius.circular(8),
+        image: DecorationImage(image: NetworkImage(data.imgUrl), fit: BoxFit.fill),
+      ),
       child: Icon(
         Icons.play_circle,
         color: Colors.grey.withOpacity(0.6),

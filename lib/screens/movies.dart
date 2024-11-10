@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/model/movie/index.dart';
 import 'package:movie_app/widgets/movie_card.dart';
 import 'package:movie_app/widgets/movie_special_card.dart';
-// Kinonii jagsaalt haruulah screen
 
 class MoviesPage extends StatefulWidget {
   const MoviesPage({super.key});
@@ -14,14 +13,8 @@ class MoviesPage extends StatefulWidget {
 }
 
 class _MoviesPageState extends State<MoviesPage> {
-  // List<MovieModel> _data = [];
-  // List<MovieModel> get _specialData =>
-  //     _data.length > 3 ? _data.sublist(0, 3) : _data;
-
   Future<List<MovieModel>> _getData() async {
-    String res =
-        await DefaultAssetBundle.of(context).loadString("assets/movies.json");
-    // JSON Decode ni String g json helberluu shiljvvldeg
+    String res = await DefaultAssetBundle.of(context).loadString("assets/movies.json");
     return MovieModel.fromList(jsonDecode(res));
   }
 
@@ -31,15 +24,27 @@ class _MoviesPageState extends State<MoviesPage> {
       future: _getData(),
       builder: ((context, snapshot) {
         if (snapshot.hasData) {
-          final _specialData = snapshot.data!.length > 3
-              ? snapshot.data!.sublist(0, 3)
-              : snapshot.data!;
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Special"),
-  
+          final _specialData = snapshot.data!.length > 3 ? snapshot.data!.sublist(0, 3) : snapshot.data!;
+          return SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 10),
+                Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Text(
+                    "Шилдэг",
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
                 SingleChildScrollView(
+                  padding: EdgeInsets.only(left: 10),
+                  scrollDirection: Axis.horizontal,
                   child: Row(
                     children: List.generate(
                       _specialData.length,
@@ -47,17 +52,39 @@ class _MoviesPageState extends State<MoviesPage> {
                     ),
                   ),
                 ),
-              Text("Movies"),
-              Wrap(
-                children: List.generate(snapshot.data!.length, (index) => MovieCard(snapshot.data![index])),
-              ),
-            ],
+                SizedBox(height: 20),
+                Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Text(
+                    "Бүх кинонууд",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Wrap(
+                    spacing: 20,
+                    runSpacing: 10,
+                    children: List.generate(
+                      snapshot.data!.length,
+                      (index) => MovieCard(snapshot.data![index]),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+              ],
+            ),
           );
         } else {
           return Center(
             child: SizedBox(
-              width: 30,
               height: 30,
+              width: 30,
               child: CircularProgressIndicator(),
             ),
           );

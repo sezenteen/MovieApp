@@ -1,18 +1,13 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
-
 part of 'index.dart';
 
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
 
 MovieModel _$MovieModelFromJson(Map<String, dynamic> json) => MovieModel(
-      id: (json['id'] as num).toInt(),
+      id: json['id'] as int,
       title: json['title'] as String,
       imgUrl: json['imgUrl'] as String,
       description: json['description'] as String?,
-      durationMin: (json['durationMin'] as num?)?.toInt(),
-      publishedYear: (json['publishedYear'] as num?)?.toInt(),
+      durationMin: json['durationMin'] as int?,
+      publishedYear: json['publishedYear'] as int?,
       type: json['type'] as String?,
     );
 
