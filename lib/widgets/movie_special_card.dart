@@ -7,12 +7,19 @@ class MovieSpecialCard extends StatelessWidget {
   const MovieSpecialCard(this.data, {super.key});
 
   @override
+  // Build арга нь MovieSpecialCard-ийн харагдах байдлыг бий болгох үүрэгтэй.
   Widget build(BuildContext context) {
+
+    // double width = MediaQuery.of(context).size.width * 0.5:
+    // Картын өргөнийг дэлгэцийн өргөний хагасаар тооцож, картыг дэлгэцийн хэмжээтэй пропорциональ тохируулна.
     double width = MediaQuery.of(context).size.width * 0.5;
+    
     return Container(
+      // MovieSpecialCard-ын үндсэн бүтэц нь киноны дүрсийг дэвсгэр болгож, түүн дээр тоглуулах дүрсийг харуулсан Контейнер юм.
       height: width * 1.5,
       width: width,
-      margin: EdgeInsets.only(right: 10),
+      margin: EdgeInsets.only(right: 10), // margin: EdgeInsets.only(баруун талд: 10):
+      // Энэ картыг дараалан харуулах үед бусад картаас тусгаарлахын тулд баруун талд 10 пикселийн зай нэмнэ.
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         image: DecorationImage(image: NetworkImage(data.imgUrl), fit: BoxFit.fill),
