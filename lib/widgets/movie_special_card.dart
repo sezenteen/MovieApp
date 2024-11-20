@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/model/movie/index.dart';
+import 'package:movie_app/screens/movie_detail.dart';
 
 class MovieSpecialCard extends StatelessWidget {
   final MovieModel data;
 
   const MovieSpecialCard(this.data, {super.key});
+
+  void _onCardTap(BuildContext context) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (_) => MovieDetailPage(data)));
+  }
 
   @override
   // Build арга нь MovieSpecialCard-ийн харагдах байдлыг бий болгох үүрэгтэй.
@@ -14,7 +20,9 @@ class MovieSpecialCard extends StatelessWidget {
     // Картын өргөнийг дэлгэцийн өргөний хагасаар тооцож, картыг дэлгэцийн хэмжээтэй пропорциональ тохируулна.
     double width = MediaQuery.of(context).size.width * 0.5;
     
-    return Container(
+    return InkWell(
+      onTap: () => _onCardTap(context),
+      child: Container(
       // MovieSpecialCard-ын үндсэн бүтэц нь киноны дүрсийг дэвсгэр болгож, түүн дээр тоглуулах дүрсийг харуулсан Контейнер юм.
       height: width * 1.5,
       width: width,
@@ -29,6 +37,7 @@ class MovieSpecialCard extends StatelessWidget {
         color: Colors.grey.withOpacity(0.6),
         size: 60,
       ),
+    ),
     );
   }
 }
